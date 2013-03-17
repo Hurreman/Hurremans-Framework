@@ -2,7 +2,7 @@ Hurremans-Framework
 ===================
 
 My small personal framework which I've improved over the years to fit the needs of my various projects.
-I decided to put it up on GitHub to share and get feedback.
+I decided to put it up on GitHub to share and get feedback. Included is a simple todo-list which requries signup and login.
 
 Directory overview
 -----------------------------------
