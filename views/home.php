@@ -20,7 +20,7 @@
 		<dl>
 			<?php
 			foreach($todolists as $todolist) {
-				echo '<dt><a href="default.php?action=todolist&method=details">' . $todolist->get('name') . '</a></dt><dd>' . $todolist->get('description') . '</dd>';
+				echo '<dt><a href="default.php?action=todolist&method=details&id='. $todolist->get('id') .'">' . $todolist->get('name') . '</a></dt><dd>' . $todolist->get('description') . '</dd>';
 			}
 			?>
 		</dl>
@@ -30,3 +30,6 @@
 	?>
 
 </div>
+
+<hr/>
+<a href="default.php?action=user&method=logout">Logout</a>

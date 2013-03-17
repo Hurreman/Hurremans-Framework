@@ -115,5 +115,13 @@ class User extends DBViewController
 		}
 		header('location: default.php');
 	}
+
+	/**
+	 * Logout a user
+	 */
+	public function logout() {
+		unset($_SESSION['loggedin']);
+		header('location: default.php');
+	}
 }
 ?>

@@ -3,7 +3,7 @@
  * Class: mTodoList
  * Author: Fredrik Karlsson (fredrik@fkinnovation.se)
  * Created: 2013-03-17
- * Desc: Minimalistic User model example
+ * Desc: Todo List
  */
 class mTodoList extends Model
 {
