@@ -43,6 +43,11 @@
     <div id="container">
         <?php echo $view; ?>
     </div>
+
+    <?php if($_SESSION['loggedin']) { ?>
+        <hr/>
+        <a href="default.php?action=user&method=logout">Logout</a>
+    <?php } ?>
 	
 </body>
 </html>

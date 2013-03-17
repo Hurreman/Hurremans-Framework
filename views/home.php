@@ -30,6 +30,3 @@
 	?>
 
 </div>
-
-<hr/>
-<a href="default.php?action=user&method=logout">Logout</a>

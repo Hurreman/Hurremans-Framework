@@ -9,11 +9,11 @@ class Helper
 		
 		$cinterval = date_diff($cd1, $cd2);
 		
-		$cdagar = $cinterval->format('%d');
-		$ctimmar = $cinterval->format('%h');
-		$cminuter = $cinterval->format('%i');
-		$csekunder = $cinterval->format('%s');
-		$ctotalSeconds = $csekunder + ($cdagar * 60 * 60 * 60) + ($ctimmar * 60 * 60) + ($cminuter * 60);
+		$cdays = $cinterval->format('%d');
+		$chours = $cinterval->format('%h');
+		$cminutes = $cinterval->format('%i');
+		$cseconds = $cinterval->format('%s');
+		$ctotalSeconds = $cseconds + ($cdays * 60 * 60 * 60) + ($chours * 60 * 60) + ($cminutes * 60);
 		
 		return $ctotalSeconds;
 		
@@ -37,7 +37,7 @@ class Helper
 	}
 	
 	
-	// Skapar ett slumpat lösenord
+	// Create random password
 	static public function create_password($length=8,$use_upper=1,$use_lower=1,$use_number=1,$use_custom="")
 	{
 		$upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -64,6 +64,12 @@ class Helper
 			$password .= $seed{rand(0,$seed_length-1)};
 		}
 		return($password);
+	}
+
+	// Convert bytes to a readable format
+	static public function convert($size) {
+    	$unit = array('b','kb','mb','gb','tb','pb');
+	    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
 	}
 }
 ?>

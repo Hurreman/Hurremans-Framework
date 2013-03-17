@@ -11,6 +11,3 @@
 	<a href="default.php?action=todolist_item&method=create&listId=<?php echo $todolist->get('id'); ?>">Add new item</a>
 </div>
 <a hreF="default.php?action=todolist&method=delete&id=<?php echo $todolist->get('id'); ?>">Delete list</a>
-
-<hr/>
-<a href="default.php?action=user&method=logout">Logout</a>
