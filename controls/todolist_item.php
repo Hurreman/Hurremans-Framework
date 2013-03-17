@@ -31,5 +31,14 @@ class TodoList_item extends DBViewController {
 			}
 		}
 	}
+
+	public function delete() {
+		if(isset($_GET['id'])) {
+			$mL = new mTodolist_item($_GET['id']);
+			$listId = $mL->get('listId');
+			$mL->delete($_GET['id']);
+			header('location: default.php?action=todolist&method=details&id=' . $listId);
+		}
+	}
 }
 ?>

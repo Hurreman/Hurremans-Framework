@@ -4,7 +4,7 @@
 	<ul>
 		<?php
 		foreach($todoList_items as $item) {
-			echo '<li>' . $item->get('name') . '</li>';
+			echo '<li>' . $item->get('name') . '<a href="default.php?action=todolist_item&method=delete&id=' . $item->get('id') . '">x</a></li>';
 		}
 		?>
 	</ul>

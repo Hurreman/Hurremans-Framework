@@ -3,7 +3,7 @@
  * Class: mTodoList
  * Author: Fredrik Karlsson (fredrik@fkinnovation.se)
  * Created: 2013-03-17
- * Desc: Todo List
+ * Desc: Todo List example model
  */
 class mTodoList extends Model
 {
