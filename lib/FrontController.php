@@ -30,6 +30,11 @@ class FrontController
      */
     public function __construct($action_dir = 'actions', $default_action = 'home', $error_action = 'error', $action_param = 'action', $method_param = 'method')
     {
+        // If this is the first page a visitor visits, create the security session and set access to public
+        if(!isset($_SESSION['security']) || $_SESSION['security'] == '') {
+            $_SESSION['security']  = 'public';
+        }
+-
         $this->action_dir = $action_dir;
         $this->default_action = $default_action;
         $this->error_action = $error_action;
@@ -101,12 +106,22 @@ class FrontController
             if(isset($_GET[$this->method_param]) && method_exists($obj, $_GET[$this->method_param]))
             {
                 // Call the method!
-                call_user_func(array($obj, $_GET[$this->method_param]));
+                if($this->userHasPermission($obj, $_GET[$this->method_param])) {
+                    call_user_func(array($obj, $_GET[$this->method_param]));
+                }
+                else {
+                    die('Permission denied!');
+                }
             }
             // Either we have no method, or it doesn't exist. Call the default execute();
             else
             {
-                $obj->execute();
+                if($this->userHasPermission($obj, 'execute')) {
+                    $obj->execute();                    
+                }
+                else {
+                    die('Permission denied!');
+                }
             }
         }
         // Could not create a controller, attempt calling the error controller
@@ -118,6 +133,38 @@ class FrontController
         else
         {
             die('An error occured when loading the controller.');
+        }
+
+    }
+
+    /**
+     * [userHasPermission description]
+     * @return boolean
+     */
+    private function userHasPermission($class, $method = false)
+    {
+        // Try fetching permission for a specific method
+        if($method != false) {
+            $permission = $class->getMethodPermission($method);
+            // If no specific permission was set, fall back to default permission
+            if($permission == false) {
+                $permission = $class->getDefaultPermission();
+            }
+        }
+        else {
+            $permission = $class->getDefaultPermission();
+        }
+
+        if($permission == 'public') {
+            return true;
+        }
+        else {
+            if(in_array($permission, $_SESSION['security'])) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
     }

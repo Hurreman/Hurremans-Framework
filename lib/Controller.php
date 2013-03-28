@@ -3,6 +3,9 @@
  * Base controller
  */
 class Controller {
+
+	protected $permission = array('default' => 'public');
+
 	public function __construct() {
 		$this->init();
 	}
@@ -10,6 +13,28 @@ class Controller {
 	public function execute() { }
 	
 	public function init() { }
+
+	public function getDefaultPermission() {
+		if(is_array($this->permission) && isset($this->permission['default'])) {
+			return $this->permission['default'];	
+		}
+		else {
+			return false;
+		}
+		
+	}
+
+	public function getMethodPermission($method) {
+		if(is_array($this->permission) && is_array($this->permission['methods'])) {
+			$methods = $this->permission['methods'];
+			if(isset($methods[$method])) {
+				return $methods[$method];
+			}
+			else {
+				return false;
+			}
+		}
+	}
 }
 
 
